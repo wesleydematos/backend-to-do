@@ -15,9 +15,15 @@ export class TasksService {
     });
   }
 
-  async findAllTasks(userId: number) {
+  async findAllTasks(userId: number, completed?: boolean) {
+    const whereCondition: any = { userId };
+
+    if (completed !== undefined) {
+      whereCondition.completed = completed;
+    }
+
     return this.prisma.task.findMany({
-      where: { userId },
+      where: whereCondition,
     });
   }
 

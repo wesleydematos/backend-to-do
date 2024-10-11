@@ -8,6 +8,7 @@ import {
   UseGuards,
   Req,
   Param,
+  Query,
 } from '@nestjs/common';
 import { TasksService } from './tasks.service';
 import { JwtAuthGuard } from '../auth/jwt-auth.guard';
@@ -26,9 +27,10 @@ export class TasksController {
 
   @UseGuards(JwtAuthGuard)
   @Get()
-  async findAllTasks(@Req() req) {
+  async findAllTasks(@Req() req, @Query('completed') completed?: string) {
     const userId = req.user.userId;
-    return this.tasksService.findAllTasks(userId);
+    const isCompleted = completed === 'true';
+    return this.tasksService.findAllTasks(userId, isCompleted);
   }
 
   @UseGuards(JwtAuthGuard)
