@@ -60,6 +60,12 @@ Com a aplicação rodando, você pode aplicar as migrações do Prisma para conf
 docker exec -it nest-app npx prisma migrate dev --name init
 ```
 
+\*\* Caso ocorra algum erro tente rodar o comando no terminal e repetir passos anteriores:
+
+```bash
+npx prisma generate
+```
+
 #
 
 # Comandos Úteis
